@@ -1,6 +1,6 @@
 <h1 align="center">Note Taker</h1>
 <p align="center">
-    <img src="https://img.shields.io/github/repo-size/merikettapearl212/team_Generator?color=brightgreen&style=for-the-badge" />
+    <img src="https://img.shields.io/github/repo-size/merikettapearl212/note_taker?color=brightgreen&style=for-the-badge" />
     <a href="https://www.linkedin.com/in/meagan-james-502b78191/">
         <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
     </a>
