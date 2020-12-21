@@ -1,5 +1,20 @@
+// Dependencies
+const express = require("express");
 
+const app = express();
+const PORT = process.env.PORT || 1200;
 
+app.use(express.static('public'));
+
+// Routes
+app.get("/", function(req, res) {
+  res.send("Hello World!");
+});
+
+// Listener
+app.listen(PORT, function() {
+  console.log("Aligator is listening on PORT" + PORT);
+});
 
 // const htmlRoutes = require("./routes/html");
 // const express = require("express");
