@@ -39,9 +39,9 @@ link to full length video:
 - [Questions](#questions)
 
 ## Installation :gear:
-<!-- `npm init`
+<!-- 
 `npm install inquirer`
-`npm i jest` -->
+ -->
 
 ## Usage :computer:
 to Run `node start` 
