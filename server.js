@@ -3,6 +3,7 @@ const express = require("express");
 const path = require("path");
 // require the "fs" module to import it
 const fs = require("fs");
+const { networkInterfaces } = require("os");
 const realData = JSON.parse(fs.readFileSync('./db/db.json', 'utf8'))
 
 const app = express();
@@ -17,14 +18,14 @@ app.use(express.static('public'));
 // API Routes
 app.get("/api/notes", function(req, res) {
   // Use the fs module tp read the file
-  // THEN .then() parse the file contents w/ JSON.parse() to real data 
+  // THEN .then() parse the file contents w/ JSON.parse() to read data 
   // Send the parsed data back to client with res.json()
   res.json(realData);
 
 });
 
 app.get("/api/notes/:id", function(req, res) {
-  let chosen = req.params.id;
+  var chosen = req.params.id;
 
   for (var i = 0; i < realData.length; i++) {
     if (chosen === realData[i].id) {
@@ -44,15 +45,15 @@ app.post("/api/notes", function(req, res) {
     // Push the req.body to array list
     // JSON.stringify() the array list back into JSON string
     // Then save the contents back to the bd.json file w/ fs module
-    let note = req.body
-    let id = "newId" + realData.length
-    note.id = id
-    realData.push(note)
+    var newNote = req.body
+    var id = "newId" + realData.length
+    newNote.id = id
+    realData.push(newNote)
     fs.writeFile('./db/db.json', JSON.stringify(realData), (err) => {
       if (err) throw (err)
-      console.log("Look ma new notes")
+      console.log("Look ma new notes"+newNote.title);
     })
-    return res.json(note);
+    return res.json(newNote);
 
 });
 
@@ -60,12 +61,12 @@ app.delete("/api/notes/:id", function(req, res) {
     // Access :id from req.params.id
     // Use the fs module to read the file
     // Then parse the file contents with JSON.parse() to the real data
-    let newId = req.params.id
-    let index = realData.findIndex( fullData => fullData.id === newId)
+    var newId = req.params.id
+    var index = realData.findIndex( fullData => fullData.id === newId)
     realData.splice(index,1)
     fs.writeFile('./db/db.json', JSON.stringify(realData), (err) => {
       if (err) throw (err)
-      console.log("I deleted")
+      console.log("I'm a deleted note!"+req.params.id);
     })
     res.json(realData)
 });
